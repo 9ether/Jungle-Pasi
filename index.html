@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My First GitHub Page</title>
+  <title>Job Search Engine for Kasi Boys</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-  <h1>Hello World!</h1>
-  <p>Welcome to my GitHub Page.</p>
+  <h1>Welcome to our Job Search Engine!</h1>
+  <p>Find your entry-level tech job here:</p>
+  
+  <input type="text" id="search" placeholder="Enter skills or certifications">
+  <button onclick="searchJobs()">Search</button>
+
+  <div id="results"></div>
+
+  <script>
+    function searchJobs() {
+      var query = document.getElementById('search').value;
+      // TODO: Implement a search function that fetches jobs based on the query
+      // For now, we'll just display the query
+      document.getElementById('results').innerText = 'You searched for: ' + query;
+    }
+  </script>
 </body>
 </html>
+
