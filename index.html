@@ -2,25 +2,68 @@
 <html>
 <head>
   <title>Job Search Engine for Kasi Boys</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+    .container {
+      margin-top: 50px;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+    }
+    .search-input {
+      width: 300px;
+      margin-right: 10px;
+    }
+    .search-btn {
+      width: 100px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to our Job Search Engine!</h1>
-  <p>Find your entry-level tech job here:</p>
-  
-  <input type="text" id="search" placeholder="Enter skills or certifications">
-  <button onclick="searchJobs()">Search</button>
+  <div class="container">
+    <h1 class="text-center">Welcome to our Job Search Engine!</h1>
+    <p class="text-center">Find your entry-level tech job here:</p>
+    
+    <div class="search-box">
+      <input type="text" id="search" class="search-input form-control" placeholder="Enter skills or certifications">
+      <button onclick="searchJobs()" class="search-btn btn btn-primary">Search</button>
+    </div>
 
-  <div id="results"></div>
+    <div id="results" class="mt-4"></div>
+  </div>
 
   <script>
     function searchJobs() {
       var query = document.getElementById('search').value;
-      // TODO: Implement a search function that fetches jobs based on the query
-      // For now, we'll just display the query
-      document.getElementById('results').innerText = 'You searched for: ' + query;
+      // Mocking job results for now
+      var jobs = [
+        { title: "Junior Web Developer", company: "TechSolutions Inc.", location: "New York, NY" },
+        { title: "Entry-Level Software Engineer", company: "CodeCrafters Ltd.", location: "San Francisco, CA" },
+        { title: "IT Support Specialist", company: "NetWorks Corp.", location: "Chicago, IL" }
+      ];
+      var resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = ''; // Clear previous results
+      if (query.trim() === '') {
+        resultsDiv.innerHTML = '<p class="text-center text-danger">Please enter a search query</p>';
+        return;
+      }
+      var matches = jobs.filter(job => job.title.toLowerCase().includes(query.toLowerCase()));
+      if (matches.length === 0) {
+        resultsDiv.innerHTML = '<p class="text-center text-info">No matching jobs found</p>';
+      } else {
+        var ul = document.createElement('ul');
+        matches.forEach(function(job) {
+          var li = document.createElement('li');
+          li.innerHTML = `<strong>${job.title}</strong> at ${job.company}, ${job.location}`;
+          ul.appendChild(li);
+        });
+        resultsDiv.appendChild(ul);
+      }
     }
   </script>
 </body>
 </html>
+
 
